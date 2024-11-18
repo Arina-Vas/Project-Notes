@@ -161,7 +161,16 @@ main {
     height: 24px;
     border-radius: 100%;
     margin: 6px;
+    cursor: pointer;
     /* box-shadow: 2px 2px 4px 0 rgba(81, 91, 117, 0.25); */
+}
+
+.circle:hover{
+    transform: scale(1.2);
+}
+
+.select-color{
+    border: 1px solid grey;
 }
 
 .yellow {
@@ -225,7 +234,7 @@ main {
 .checkbox-input:checked::after {
     width: 24px;
     height: 24px;
-    transition: 300ms;
+    transition: 100ms;
 }
 
 
@@ -269,7 +278,7 @@ main {
     flex-direction: row;
     justify-content: space-between;
     padding: 12px;
-    background-color: #f3db7d;
+    /* background-color: #f3db7d; */
 }
 
 
@@ -279,7 +288,7 @@ main {
 
 .favorite-check {
     appearance: none;
-    position:relative;
+    position: relative;
     width: 16px;
     height: 16px;
     background-image: url("/assets/images/heart\ inactive.svg");
@@ -299,10 +308,10 @@ main {
 .favorite-check:checked::after {
     width: 16px;
     height: 16px;
-    transition: 300ms;
+    transition: 100ms;
 }
 
-.delete-button{
+.delete-button {
     width: 16px;
     height: 16px;
     background-image: url(./assets/images/trash.png);
@@ -310,4 +319,8 @@ main {
     background-size: contain;
     border: none;
     background-color: transparent;
+}
+
+.hidden {
+    display: none;
 }

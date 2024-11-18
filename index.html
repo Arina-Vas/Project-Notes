@@ -12,8 +12,9 @@
     <header>
         <nav>
             <li><span>NOTES</span></li>
-            <li><span>Всего заметок: </span>
-                <span>0</span>
+            <li class="counter">
+                <span>Всего заметок:</span>
+                <span class="count">0</span>
             </li>
         </nav>
     </header>
@@ -36,21 +37,11 @@
                     <div class="colors">
                         <label class="title">Выберите цвет заметки</label>
                         <ul class="color">
-                            <li class="selected">
-                                <div class="circle yellow"></div>
-                            </li>
-                            <li>
-                                <div class="circle green"></div>
-                            </li>
-                            <li>
-                                <div class="circle blue"></div>
-                            </li>
-                            <li>
-                                <div class="circle red"></div>
-                            </li>
-                            <li>
-                                <div class="circle pink"></div>
-                            </li>
+                            <li id="yellow" class="circle yellow"></li>
+                            <li id="green" class="circle green"></li>
+                            <li id="blue" class="circle blue"></li>
+                            <li id="red" class="circle red"></li>
+                            <li id="pink" class="circle pink"></li>
                         </ul>
                     </div>
                     <button type="submit" class="add-button">Добавить заметку</button>
@@ -68,7 +59,6 @@
             <div class="message-box"></div>
         </section>
     </main>
-    <button class="favorite-button" type="button" >fghjn</button>
     <script src="main.js"></script>
 </body>
 
