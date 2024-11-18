@@ -1,0 +1,313 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    margin: 10px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+body {
+    min-width: 375px;
+}
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite {}
+
+form {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.color {
+    margin: 20px;
+    list-style: none;
+    width: 100px;
+    display: flex;
+    gap: 10px;
+}
+
+.circle {
+    height: 36px;
+    width: 36px;
+    border: 3px solid;
+    border-radius: 100%;
+    text-align: center;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 375px;
+}
+
+header {
+    padding: 18px 64px;
+    box-shadow: 0 1px 3px 0 rgba(11, 12, 13, 0.16), 0 0 1px 0 rgba(11, 12, 13, 0.24);
+    background-color: #fff;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+main {
+    background-color: #fafafc;
+    min-height: 100vh;
+    padding: 18px 64px 0px;
+
+}
+
+.input-notes {
+    width: 1152px;
+    height: 228px;
+    justify-self: center;
+    border-radius: 4px;
+    padding: 24px;
+    box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+    background-color: #fff;
+    margin-bottom: 24px;
+}
+
+.input-notes .form {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.input-wrap,
+.input-title-wrap {
+    display: flex;
+    flex-direction: column;
+    /* gap: 4px; */
+}
+
+.input-title,
+.input-text {
+    padding: 6px 12px 0px;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    height: fit-content;
+
+}
+
+.input-text {
+    min-width: 848px;
+    height: 84px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.input-title {
+    max-width: 344px;
+    height: 36px;
+}
+
+.color-submit-wrap {
+    align-self: end;
+    width: 232px;
+}
+
+.colors {
+    display: flex;
+    flex-direction: column;
+    width: 212px;
+    margin-bottom: 12px;
+}
+
+.color {
+    display: flex;
+    gap: 8px;
+    width: 232px;
+    list-style: none;
+}
+
+.add-button {
+    border: none;
+    border-radius: 10px;
+    padding: 6px 24px;
+    width: 100%;
+    height: 36px;
+    color: #fff;
+    background-color: #457cdc;
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    margin: 6px;
+    /* box-shadow: 2px 2px 4px 0 rgba(81, 91, 117, 0.25); */
+}
+
+.yellow {
+    background-color: #f3db7d;
+}
+
+.green {
+    background-color: #c2f37d
+}
+
+.blue {
+    background-color: #7de1f3
+}
+
+.red {
+    background-color: #f37d7d
+}
+
+.pink {
+    background-color: #e77df3
+}
+
+.notes {
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: 1152px;
+    /* min-height: 228px; */
+    justify-self: center;
+}
+
+.checkbox {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 4px;
+}
+
+.checkbox-label {
+    padding-left: 8px;
+}
+
+.checkbox-input {
+    appearance: none;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background-image: url("/assets/images/checkbox\ inactive.svg");
+    background-repeat: no-repeat;
+}
+
+.checkbox-input::after {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    background-image: url("/assets/images/checkbox\ active.svg");
+    background-repeat: no-repeat;
+    /* transition: 300ms; */
+}
+
+.checkbox-input:checked::after {
+    width: 24px;
+    height: 24px;
+    transition: 300ms;
+}
+
+
+.list {
+    margin-top: 12px;
+    gap: 24px;
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.empty-list {
+    align-self: center;
+    text-align: center;
+}
+
+.note {
+    border-radius: 10px;
+    width: 368px;
+    box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+    overflow: hidden;
+    height: fit-content;
+}
+
+
+.note-title {}
+
+.note-text {
+    padding: 12px;
+    /* min-width: 50px;
+    max-width: 100%;
+    resize: vertical;
+    overflow: hidden;
+    resize: vertical; */
+    /* white-space: pre-wrap; in HTML(JS) for div .note-text contenteditable="true"*/
+}
+
+
+.note-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px;
+    background-color: #f3db7d;
+}
+
+
+.favorite {
+    background-color: #f3db7d;
+}
+
+.favorite-check {
+    appearance: none;
+    position:relative;
+    width: 16px;
+    height: 16px;
+    background-image: url("/assets/images/heart\ inactive.svg");
+    background-repeat: no-repeat;
+}
+
+.favorite-check::after {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    background-image: url("/assets/images/heart\ active.svg");
+    background-repeat: no-repeat;
+    /* transition: 300ms; */
+}
+
+.favorite-check:checked::after {
+    width: 16px;
+    height: 16px;
+    transition: 300ms;
+}
+
+.delete-button{
+    width: 16px;
+    height: 16px;
+    background-image: url(./assets/images/trash.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    background-color: transparent;
+}

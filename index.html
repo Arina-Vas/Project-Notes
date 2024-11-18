@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <li><span>NOTES</span></li>
+            <li><span>Всего заметок: </span>
+                <span>0</span>
+            </li>
+        </nav>
+    </header>
+    <main>
+        <section class="input-notes">
+            <form class="form" action="">
+                <div class="text-wrap">
+                    <div class="input-title-wrap">
+                        <label for='input-title'>Название заметки</label>
+                        <input id='input-title' class="input-title" type="text"
+                            placeholder="Напишите название новой заметки...">
+                    </div>
+                    <div class="input-wrap">
+                        <label for='input-text'>Описание новой заметки</label>
+                        <input id='input-text' class="input-text" type="text"
+                            placeholder="Напишите описание новой заметки...">
+                    </div>
+                </div>
+                <div class="color-submit-wrap">
+                    <div class="colors">
+                        <label class="title">Выберите цвет заметки</label>
+                        <ul class="color">
+                            <li class="selected">
+                                <div class="circle yellow"></div>
+                            </li>
+                            <li>
+                                <div class="circle green"></div>
+                            </li>
+                            <li>
+                                <div class="circle blue"></div>
+                            </li>
+                            <li>
+                                <div class="circle red"></div>
+                            </li>
+                            <li>
+                                <div class="circle pink"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="submit" class="add-button">Добавить заметку</button>
+                </div>
+            </form>
+        </section>
+        <section class="notes">
+            <div class="checkbox">
+                <input id="favorite-note" type="checkbox" class="checkbox-input" />
+                <label for="favorite-note" class="checkbox-label">Показать только избранные заметки</label>
+            </div>
+            <div class="empty-list"></div>
+            <ul class="list">
+            </ul>
+            <div class="message-box"></div>
+        </section>
+    </main>
+    <button class="favorite-button" type="button" >fghjn</button>
+    <script src="main.js"></script>
+</body>
+
+</html>
