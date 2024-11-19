@@ -70,7 +70,10 @@ const view = {
             if (noteTitle && noteText && noteTitle.length <= 50) {
                 noteText.trim();
                 noteTitle.trim();
-                messageBox.textContent = "Заметка добавлена" // спорный моментик
+                messageBox.classList.add('message-add')
+                messageBox.innerHTML = `
+                <img src="./assets/images/warning.svg" alt="warning">
+                <span>Заметка добавлена</span>` // спорный моментик
                 controller.addNote(noteTitle, noteText, noteColor)
                 inputTitle.value = '';
                 inputText.value = '';
@@ -81,14 +84,22 @@ const view = {
                 controller.showAllNotes();
             }
             else if (noteTitle.length > 50) {
-                messageBox.textContent = "Максимальная длина заголовка - 50 символов"
+                messageBox.classList.add('message-warning')
+                messageBox.innerHTML = `
+                <img src="./assets/images/warning.svg" alt="warning">
+                <span>Максимальная длина заголовка - 50 символов</span>`
             }
             else {
-                messageBox.textContent = "Заполните все поля" // спорный моментик
+                messageBox.classList.add('message-warning')
+                messageBox.innerHTML = `
+                <img src="./assets/images/warning.svg" alt="warning">
+                <span>Заполните все поля</span>` // спорный моментик
             }
 
             setTimeout(() => {
-                messageBox.textContent = ''
+                messageBox.innerHTML = ''
+                messageBox.classList.remove('message-warning')
+                messageBox.classList.remove('message-add')
             }, 3000) // спорный моментик
         })
 
@@ -129,7 +140,7 @@ const view = {
         const emptyList = document.querySelector('.empty-list')
         emptyList.innerHTML = "";
         if (!notes.length) {
-            emptyList.innerHTML = `У вас нет еще ни одной заметки<br>
+            emptyList.innerHTML = `У вас нет ещё ни одной заметки.<br>
             Заполните поля выше и создайте свою первую заметку!`
         }
         let notesListHTML = '';
