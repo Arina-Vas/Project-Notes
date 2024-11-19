@@ -13,18 +13,15 @@ const model = {
         this.notes = this.notes.filter((note) => note.id !== noteId)
     },
     toggleFavorite(noteId) {
-        this.notes.map((note) => {
+        this.notes.forEach((note) => {
             if (note.id === noteId) {
                 note.isFavorite = !note.isFavorite
             }
+            return note;
         })
-        // const note = this.notes.find((note) => note.id === noteId);
-        // if (note) {
-        //     note.isFavorite = !note.isFavorite;
-        // } нам нужен 1 элемент
     },
     showFavorite() {
-        this.notes.map((note) => {
+        this.notes.forEach((note) => {
             if (!note.isFavorite) {
                 note.isHidden = true;
             }
@@ -45,24 +42,28 @@ const view = {
         const notesList = document.querySelector('.list')
         const messageBox = document.querySelector('.message-box')
         const favoriteListToggle = document.querySelector('.checkbox-input')
-        const colorsList = document.querySelector('.color')
+        const colorsList = document.querySelector('.colors-list')
 
         colorsList.addEventListener('click', (e) => {
             const selectedColor = colorsList.querySelector('.select-color');
             if (e.target.classList.contains('circle')) {
-                if (selectedColor) {
-                    selectedColor.classList.remove('select-color')
+                if (!selectedColor) {
+                    e.target.parentElement.classList.add('select-color')
                 }
-                e.target.classList.add('select-color')
+                else {
+                    selectedColor.classList.remove('select-color')
+                    e.target.parentElement.classList.add('select-color')
+                }
             }
         })
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const selectedColor = e.target.querySelector('.select-color');
+            // console.log(selectedColor.firstElementChild.id);
             let noteColor = ''
             if (selectedColor) {
-                noteColor = selectedColor.id
+                noteColor = selectedColor.firstElementChild.id
             }
             const noteTitle = inputTitle.value;
             const noteText = inputText.value;
@@ -73,7 +74,11 @@ const view = {
                 controller.addNote(noteTitle, noteText, noteColor)
                 inputTitle.value = '';
                 inputText.value = '';
-                if (selectedColor) { selectedColor.classList.remove('select-color') }
+                if (selectedColor) {
+                    selectedColor.classList.remove('select-color')
+                }
+                favoriteListToggle.checked = false;
+                controller.showAllNotes();
             }
             else if (noteTitle.length > 50) {
                 messageBox.textContent = "Максимальная длина заголовка - 50 символов"
@@ -98,6 +103,7 @@ const view = {
             }
         })
 
+
         notesList.addEventListener('click', (e) => {
             const noteId = +e.target.closest('li').id
             if (e.target.classList.contains('delete-button')) {
@@ -114,37 +120,34 @@ const view = {
                 }
             }
         })
+
+
     },
 
     renderNotes(notes) {
         const notesList = document.querySelector('.list')
         const emptyList = document.querySelector('.empty-list')
-
+        emptyList.innerHTML = "";
         if (!notes.length) {
             emptyList.innerHTML = `У вас нет еще ни одной заметки<br>
             Заполните поля выше и создайте свою первую заметку!`
-            // return;
         }
-        else {
-            emptyList.innerHTML = ""
-            let notesListHTML = notes.map((note) =>
-                `<li id = '${note.id}' class = "${note.isHidden ? 'hidden note' : 'note'}"> 
-                <div class = "${note.color ? note.color : 'yellow'} note-header">
-                    <p class = 'note-title'>${note.title}</p> 
-                    <div class = 'buttons'>
-                        <input class="favorite-check" type="checkbox" ${note.isFavorite ? 'checked' : 'unchecked'}> 
-                        <button class="delete-button" type="button"></button>
-                    </div>
+        let notesListHTML = '';
+        notes.forEach((note) => {
+            notesListHTML += `<li id = '${note.id}' class = "${note.isHidden ? 'hidden note' : 'note'}"> 
+            <div class = "note-header ${note.color ? note.color : 'yellow'}">
+                <p class = 'note-title'>${note.title}</p> 
+                <div class = 'buttons'>
+                    <input class="favorite-check" type="checkbox" ${note.isFavorite ? 'checked' : 'unchecked'}> 
+                    <button class="delete-button" type="button"></button>
                 </div>
-                <div  class = 'note-text' >${note.text}</div>
-                    </li>`
-            ).join('');
-            notesList.innerHTML = notesListHTML;
-            this.notesCounterUpdate(notes)
-        }
-
+            </div>
+            <div  class = 'note-text' >${note.text}</div>
+                </li>`
+        });
+        notesList.innerHTML = notesListHTML;
+        this.notesCounterUpdate(notes)
     },
-
     notesCounterUpdate(notes) {
         document.querySelector('.count').textContent = notes.length
     }
@@ -177,22 +180,3 @@ function init() {
     view.init()
 }
 init();
-
-// Вынести сообщения в отдельную функцию
-// this.showMessage(
-//     noteTitle.length > 50
-//         ? 'Максимальная длина заголовка - 50 символов'
-//         : 'Заполните все поля',
-//     3000
-// );
-// }
-// },
-
-// showMessage(message, duration) {
-//     this.dom.messageBox.textContent = message;
-//     if (duration) {
-//         setTimeout(() => {
-//             this.dom.messageBox.textContent = '';
-//         }, duration);
-//     }
-// },

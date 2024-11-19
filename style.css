@@ -53,6 +53,7 @@ form {
 }
 
 body {
+    font-family: "Montserrat", sans-serif;
     min-width: 375px;
 }
 
@@ -60,66 +61,78 @@ header {
     padding: 18px 64px;
     box-shadow: 0 1px 3px 0 rgba(11, 12, 13, 0.16), 0 0 1px 0 rgba(11, 12, 13, 0.24);
     background-color: #fff;
-}
-
-nav {
     display: flex;
     justify-content: space-between;
-    list-style: none;
 }
 
-main {
-    background-color: #fafafc;
-    min-height: 100vh;
-    padding: 18px 64px 0px;
 
+main {
+    width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
+    padding: 18px 64px;
+
+    background-color: #fafafc;
 }
 
 .input-notes {
-    width: 1152px;
-    height: 228px;
-    justify-self: center;
-    border-radius: 4px;
+    max-width: 1152px;
     padding: 24px;
+
+    border-radius: 4px;
     box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
     background-color: #fff;
-    margin-bottom: 24px;
 }
 
-.input-notes .form {
+.input-notes .form,
+.text-wrap {
     display: flex;
-    gap: 12px;
-    justify-content: space-between;
+    gap: 24px;
 }
 
 .text-wrap {
-    display: flex;
     flex-direction: column;
-    gap: 24px;
-    justify-content: space-between;
 }
 
-.input-wrap,
-.input-title-wrap {
+.input-text-wrap,
+.input-title-wrap,
+.colors {
     display: flex;
     flex-direction: column;
-    /* gap: 4px; */
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 2;
+    color: #919191;
 }
 
 .input-title,
 .input-text {
-    padding: 6px 12px 0px;
+    padding: 6px 12px;
     border: 1px solid #e8e8e8;
     border-radius: 10px;
-    height: fit-content;
 
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #000;
+}
+
+::placeholder {
+    color: #919191;
 }
 
 .input-text {
-    min-width: 848px;
+    width: 848px;
     height: 84px;
-    text-align: center;
-    flex-wrap: wrap;
+    resize: none;
 }
 
 .input-title {
@@ -135,42 +148,61 @@ main {
 .colors {
     display: flex;
     flex-direction: column;
-    width: 212px;
     margin-bottom: 12px;
 }
 
-.color {
+.colors-list {
     display: flex;
+    width: 100%;
     gap: 8px;
-    width: 232px;
     list-style: none;
 }
 
+.colors-list>li {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+
+
 .add-button {
+    display: flex;
+    align-items: center;
+    gap: 7px;/*8px*/
+
+    width: 100%;
     border: none;
     border-radius: 10px;
     padding: 6px 24px;
-    width: 100%;
-    height: 36px;
-    color: #fff;
     background-color: #457cdc;
+
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.5;
+    font-size: 16px;
+
+    cursor: pointer;
 }
+
 
 .circle {
     width: 24px;
     height: 24px;
     border-radius: 100%;
-    margin: 6px;
     cursor: pointer;
-    /* box-shadow: 2px 2px 4px 0 rgba(81, 91, 117, 0.25); */
 }
 
-.circle:hover{
+.circle:hover {
     transform: scale(1.2);
 }
 
-.select-color{
-    border: 1px solid grey;
+.select-color {
+    border: 1.50px solid #457cdc;
 }
 
 .yellow {
@@ -193,12 +225,16 @@ main {
     background-color: #e77df3
 }
 
+
+/* section NOTES */
 .notes {
     /* display: flex; */
     /* flex-direction: column; */
-    width: 1152px;
-    /* min-height: 228px; */
-    justify-self: center;
+    /* gap: 12px; */
+    /* width: 1152px; */
+    height: 100vh;
+    /* justify-self: center; */
+
 }
 
 .checkbox {
@@ -206,6 +242,7 @@ main {
     justify-content: end;
     align-items: center;
     padding: 4px;
+    margin-bottom: 12px;
 }
 
 .checkbox-label {
@@ -239,11 +276,11 @@ main {
 
 
 .list {
-    margin-top: 12px;
     gap: 24px;
     display: flex;
     list-style: none;
     flex-wrap: wrap;
+    position: absolute;
 }
 
 .empty-list {
@@ -323,4 +360,20 @@ main {
 
 .hidden {
     display: none;
+}
+
+.message-box {
+    position: fixed;
+    bottom: 72px;
+    /* Отступ от нижнего края окна */
+    right: 64px;
+    z-index: 1;
+
+    align-items: center;
+    justify-self: center;
+
+    background-color: red;
+    border-radius: 10px;
+    padding: 12px 24px;
+    width: 232px;
 }

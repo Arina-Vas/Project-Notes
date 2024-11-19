@@ -5,57 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
     <header>
-        <nav>
-            <li><span>NOTES</span></li>
-            <li class="counter">
-                <span>Всего заметок:</span>
-                <span class="count">0</span>
-            </li>
-        </nav>
+        <span class="logo">NOTES</span>
+        <div class="counter">
+            <span>Всего заметок:</span>
+            <span class="count">0</span>
+        </div>
     </header>
+
     <main>
+
         <section class="input-notes">
-            <form class="form" action="">
+            <form class="form">
                 <div class="text-wrap">
                     <div class="input-title-wrap">
                         <label for='input-title'>Название заметки</label>
                         <input id='input-title' class="input-title" type="text"
                             placeholder="Напишите название новой заметки...">
                     </div>
-                    <div class="input-wrap">
+                    <div class="input-text-wrap">
                         <label for='input-text'>Описание новой заметки</label>
-                        <input id='input-text' class="input-text" type="text"
-                            placeholder="Напишите описание новой заметки...">
+                        <textarea id='input-text' class="input-text" type="text"
+                            placeholder="Напишите описание новой заметки..."></textarea><!--maxlength="50 -->
                     </div>
                 </div>
+
                 <div class="color-submit-wrap">
                     <div class="colors">
                         <label class="title">Выберите цвет заметки</label>
-                        <ul class="color">
-                            <li id="yellow" class="circle yellow"></li>
-                            <li id="green" class="circle green"></li>
-                            <li id="blue" class="circle blue"></li>
-                            <li id="red" class="circle red"></li>
-                            <li id="pink" class="circle pink"></li>
+                        <ul class="colors-list">
+                            <li>
+                                <div id="yellow" class="circle yellow"></div>
+                            </li>
+                            <li>
+                                <div id="green" class="circle green"></div>
+                            </li>
+                            <li>
+                                <div id="blue" class="circle blue"></div>
+                            </li>
+                            <li>
+                                <div id="red" class="circle red"></div>
+                            </li>
+                            <li>
+                                <div id="pink" class="circle pink"></div>
+                            </li>
                         </ul>
                     </div>
-                    <button type="submit" class="add-button">Добавить заметку</button>
+                    <button type="submit" class="add-button">
+                        <img src="/assets/images/plus-svgrepo-com 1.svg" alt="add">
+                        <span>Добавить заметку</span></button>
                 </div>
             </form>
         </section>
+
+        <!-- Notes Section -->
+
         <section class="notes">
             <div class="checkbox">
                 <input id="favorite-note" type="checkbox" class="checkbox-input" />
                 <label for="favorite-note" class="checkbox-label">Показать только избранные заметки</label>
             </div>
+
             <div class="empty-list"></div>
+
             <ul class="list">
             </ul>
+
             <div class="message-box"></div>
         </section>
     </main>
