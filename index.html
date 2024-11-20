@@ -15,8 +15,12 @@
 <body>
 
     <header>
-        <span class="logo">NOTES</span>
+        <div class="logo">
+            <img src="/assets/images/Vector.svg"></img>
+            <span>NOTES</span>
+        </div>
         <div class="counter">
+            <img src="/assets/images/notes.svg" alt="">
             <span>Всего заметок:</span>
             <span class="count">0</span>
         </div>
@@ -29,8 +33,8 @@
                 <div class="text-wrap">
                     <div class="input-title-wrap">
                         <label for='input-title'>Название заметки</label>
-                        <input id='input-title' class="input-title" type="text"
-                            placeholder="Напишите название новой заметки...">
+                        <textarea id='input-title' class="input-title" type="text"
+                            placeholder="Напишите название новой заметки..."></textarea>
                     </div>
                     <div class="input-text-wrap">
                         <label for='input-text'>Описание новой заметки</label>
@@ -87,6 +91,3 @@
 </body>
 
 </html>
-
-<img src="./assets/images/warning.png" alt="warning">
-<span></span>

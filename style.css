@@ -1,51 +1,3 @@
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-nav{
-    margin: 10px;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-body {
-    min-width: 375px;
-}
-
-.main {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
-.favorite {}
-
-form {
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.color {
-    margin: 20px;
-    list-style: none;
-    width: 100px;
-    display: flex;
-    gap: 10px;
-}
-
-.circle {
-    height: 36px;
-    width: 36px;
-    border: 3px solid;
-    border-radius: 100%;
-    text-align: center;
-} */
-
 * {
     margin: 0;
     padding: 0;
@@ -58,11 +10,13 @@ body {
 }
 
 header {
+    height: 60px;
     padding: 18px 64px;
     box-shadow: 0 1px 3px 0 rgba(11, 12, 13, 0.16), 0 0 1px 0 rgba(11, 12, 13, 0.24);
     background-color: #fff;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     font-weight: 500;
     font-size: 16px;
@@ -71,19 +25,38 @@ header {
     color: #000;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    color: #457cdc;
+    text-decoration: underline;
+}
+
+.logo img {
+    width: 24px;
+    height: 24px;
+}
+
+.counter {
+    display: flex;
+    gap: 12px;
+}
+
+.counter img {
+    width: 24px;
+    height: 24px;
+}
+
 .count {
     font-weight: 700;
 }
 
-
-
 main {
-    width: 100vw;
-    min-height: 100vh;
+    min-height: calc(100vh - 60px);
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     gap: 24px;
@@ -100,6 +73,7 @@ main {
 /* section INPUT-NOTES */
 
 .input-notes {
+    width: 100%;
     max-width: 1152px;
     padding: 24px;
 
@@ -108,7 +82,7 @@ main {
     background-color: #fff;
 }
 
-.input-notes .form,
+.form,
 .text-wrap {
     display: flex;
     gap: 24px;
@@ -116,6 +90,7 @@ main {
 
 .text-wrap {
     flex-direction: column;
+    flex-grow: 2;
 }
 
 .input-text-wrap,
@@ -140,6 +115,8 @@ main {
     font-size: 14px;
     line-height: 1.7;
     color: #000;
+
+    resize: none;
 }
 
 ::placeholder {
@@ -147,29 +124,26 @@ main {
 }
 
 .input-text {
-    width: 848px;
     height: 84px;
-    resize: none;
 }
 
 .input-title {
-    max-width: 344px;
+    max-width: 345px;
+    text-align: center;
     height: 36px;
+    overflow: hidden;
 }
 
 .color-submit-wrap {
     align-self: end;
-    width: 232px;
 }
 
-.colors {
-    margin-bottom: 12px;
-}
 
 .colors-list {
     display: flex;
     gap: 8px;
     list-style: none;
+    margin-bottom: 12px;
 }
 
 .colors-list li {
@@ -184,8 +158,8 @@ main {
 .add-button {
     display: flex;
     align-items: center;
-    gap: 7px;
-    /*8px*/
+    justify-content: center;
+    gap: 8px;
 
     width: 100%;
     border: none;
@@ -242,10 +216,12 @@ main {
 
 /* section NOTES */
 .notes {
-    width: 1152px;
-    height: 100vh;
-    justify-self: center;
-
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1152px;
+    position: relative;
+    gap: 12px;
 }
 
 .checkbox {
@@ -253,10 +229,14 @@ main {
     justify-content: end;
     gap: 8px;
     align-items: center;
-    margin-bottom: 12px;
-
+    /* margin-bottom: 12px; */
     font-size: 12px;
-}
+    }
+
+    .checkbox-input,
+    .checkbox-label{
+        cursor: pointer;
+    }
 
 .checkbox-input {
     appearance: none;
@@ -268,6 +248,7 @@ main {
     /*чтобы картинка маштабировалась корректно*/
     background-repeat: no-repeat;
 }
+
 
 .checkbox-input::after {
     content: '';
@@ -292,7 +273,6 @@ main {
     display: flex;
     list-style: none;
     flex-wrap: wrap;
-    position: absolute;
 }
 
 .empty-list {
@@ -303,6 +283,7 @@ main {
 }
 
 .note {
+    height: max-content;
     border-radius: 10px;
     width: 368px;
     box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
@@ -315,7 +296,9 @@ main {
 
 .note-header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    gap: 8px;
     padding: 12px;
     font-weight: 500;
     font-size: 16px;
@@ -323,6 +306,17 @@ main {
     color: #292515;
     /* background-color: #f3db7d; */
 }
+
+.note-title {
+    word-break: break-all;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+    
+}
+
 
 
 .favorite-check {
@@ -333,6 +327,8 @@ main {
     background-image: url("/assets/images/heart\ inactive.svg");
     background-size: contain;
     background-repeat: no-repeat;
+
+    cursor: pointer;
 }
 
 .favorite-check::after {
@@ -355,11 +351,13 @@ main {
 .delete-button {
     width: 16px;
     height: 16px;
-    background-image: url(./assets/images/trash.png);
+    background-image: url(./assets/images/trash.svg);
     background-repeat: no-repeat;
     background-size: contain;
     border: none;
     background-color: transparent;
+
+    cursor: pointer;
 }
 
 .note-text {
@@ -381,24 +379,20 @@ main {
 }
 
 .message-box {
-    display: none;
-    position: fixed;
+    display: flex;
+    gap: 10px;
+    align-self: flex-end;
+    position: sticky;
     bottom: 72px;
-    /* Отступ от нижнего края окна */
-    right: 64px;
+
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1;
 
-    /* display: flex;
-    align-items: center;
-    gap: 7px; */
-
-
-    /* background-color: red; */
     border-radius: 10px;
     padding: 12px 24px;
     box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
-    /* width: 232px; */
-    /* height: 48px; */
 
     font-weight: 500;
     line-height: 24px;
@@ -407,10 +401,9 @@ main {
 
 .message-add,
 .message-warning {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .message-add {
@@ -419,4 +412,66 @@ main {
 
 .message-warning {
     background-color: #f23d5b;
+}
+
+
+@media screen and (max-width: 576px) {
+    header {
+        padding: 12px;
+    }
+
+    main {
+        padding: 12px;
+        gap: 2px;
+    }
+
+    .input-notes,
+    .notes {
+        padding: 12px;
+        gap: 4px;
+    }
+
+    .form,
+    .text-wrap {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .input-text-wrap,
+    .input-title-wrap,
+    .color-submit-wrap {
+        width: 100%;
+    }
+
+    .input-title,
+    .input-text {
+        padding: 4px;
+    }
+
+    .colors {
+        align-items: center;
+    }
+
+    .notes {
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .colors-list {
+        gap: 0px;
+    }
+
+    .note {
+        width: 100%;
+    }
+
+    .colors {
+        align-items: center;
+    }
 }

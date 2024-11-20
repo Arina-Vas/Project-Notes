@@ -4,13 +4,17 @@ const mockNotes = [
     { id: 3, title: "Объекты (JavaScript)", text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", color: "pink", isFavorite: false, isHidden: false }
 ]
 
+const myStorage = window.sessionStorage;
+// myStorage.notes = model.notes
 const model = {
-    notes: [],
+    notes: JSON.parse(myStorage.getItem('notes')) || [],
     addNote(noteTitle, noteText, noteColor) {
         this.notes.unshift({ id: Math.random(), title: noteTitle, text: noteText, color: noteColor, isFavorite: false, isHidden: false })
+        this.saveNotes()
     },
     deleteNote(noteId) {
         this.notes = this.notes.filter((note) => note.id !== noteId)
+        this.saveNotes()
     },
     toggleFavorite(noteId) {
         this.notes.forEach((note) => {
@@ -19,6 +23,7 @@ const model = {
             }
             return note;
         })
+        this.saveNotes()
     },
     showFavorite() {
         this.notes.forEach((note) => {
@@ -26,23 +31,30 @@ const model = {
                 note.isHidden = true;
             }
         })
+        this.saveNotes()
     },
     showAllNotes() {
         this.notes.forEach((note) => note.isHidden = false)
+        this.saveNotes()
+    },
+    saveNotes() {
+        myStorage.setItem('notes', JSON.stringify(this.notes));
     }
 }
 
 const view = {
     init() {
         this.renderNotes(model.notes)
+        controller.showAllNotes();
 
         const form = document.querySelector('.form');
         const inputTitle = document.querySelector('.input-title')
         const inputText = document.querySelector('.input-text')
         const notesList = document.querySelector('.list')
-        const messageBox = document.querySelector('.message-box')
         const favoriteListToggle = document.querySelector('.checkbox-input')
         const colorsList = document.querySelector('.colors-list')
+        let text = "";
+        let type = "";
 
         colorsList.addEventListener('click', (e) => {
             const selectedColor = colorsList.querySelector('.select-color');
@@ -60,21 +72,28 @@ const view = {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const selectedColor = e.target.querySelector('.select-color');
-            // console.log(selectedColor.firstElementChild.id);
             let noteColor = ''
             if (selectedColor) {
                 noteColor = selectedColor.firstElementChild.id
             }
             const noteTitle = inputTitle.value;
             const noteText = inputText.value;
-            if (noteTitle && noteText && noteTitle.length <= 50) {
+            if (!noteTitle && !noteText) {
+                text = 'Заполните все поля';
+                type = 'message-warning';
+            }
+            else if (noteTitle.length > 50) {
+                type = 'message-warning';
+                text = 'Максимальная длина заголовка - 50 символов';
+                // view.showMessage(type, text);
+            }
+            else {
                 noteText.trim();
                 noteTitle.trim();
-                messageBox.classList.add('message-add')
-                messageBox.innerHTML = `
-                <img src="./assets/images/warning.svg" alt="warning">
-                <span>Заметка добавлена</span>` // спорный моментик
+                type = 'message-add';
+                text = 'Заметка добавлена';
                 controller.addNote(noteTitle, noteText, noteColor)
+                // view.showMessage(type, text);
                 inputTitle.value = '';
                 inputText.value = '';
                 if (selectedColor) {
@@ -83,45 +102,25 @@ const view = {
                 favoriteListToggle.checked = false;
                 controller.showAllNotes();
             }
-            else if (noteTitle.length > 50) {
-                messageBox.classList.add('message-warning')
-                messageBox.innerHTML = `
-                <img src="./assets/images/warning.svg" alt="warning">
-                <span>Максимальная длина заголовка - 50 символов</span>`
-            }
-            else {
-                messageBox.classList.add('message-warning')
-                messageBox.innerHTML = `
-                <img src="./assets/images/warning.svg" alt="warning">
-                <span>Заполните все поля</span>` // спорный моментик
-            }
-
-            setTimeout(() => {
-                messageBox.innerHTML = ''
-                messageBox.classList.remove('message-warning')
-                messageBox.classList.remove('message-add')
-            }, 3000) // спорный моментик
+            this.showMessage(type, text);
         })
 
         favoriteListToggle.addEventListener('click', () => {
             if (favoriteListToggle.checked) {
                 controller.showFavorite();
-                // console.log("check");
             }
             else if (!favoriteListToggle.checked) {
-                // console.log("uncheck");
                 controller.showAllNotes();
             }
-        })
 
+        })
 
         notesList.addEventListener('click', (e) => {
             const noteId = +e.target.closest('li').id
             if (e.target.classList.contains('delete-button')) {
-                messageBox.textContent = "Заметка удалена";
-                setTimeout(() => {
-                    messageBox.textContent = ''
-                }, 3000)
+                type = 'message-warning';
+                text = "Заметка удалена";
+                this.showMessage(type, text);
                 controller.deleteNote(noteId)
             }
             else if (e.target.classList.contains('favorite-check')) {
@@ -131,8 +130,6 @@ const view = {
                 }
             }
         })
-
-
     },
 
     renderNotes(notes) {
@@ -161,6 +158,17 @@ const view = {
     },
     notesCounterUpdate(notes) {
         document.querySelector('.count').textContent = notes.length
+    },
+    showMessage(type, text) {
+        const messageBox = document.querySelector('.message-box')
+        messageBox.classList.add(`${type}`)
+        messageBox.innerHTML = `
+                <img src="${type === 'message-add' ? './assets/images/Done.svg' : './assets/images/warning.svg'}" alt="warning">
+                <span>${text}</span>` //
+        setTimeout(() => {
+            messageBox.innerHTML = ''
+            messageBox.classList.remove('message-warning', 'message-add')
+        }, 3000)
     }
 }
 
