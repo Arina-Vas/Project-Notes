@@ -451,6 +451,10 @@ main {
         padding: 4px;
     }
 
+    .list{
+        width: 100%;
+    }
+
     .colors {
         align-items: center;
     }
