@@ -78,7 +78,7 @@ const view = {
             }
             const noteTitle = inputTitle.value;
             const noteText = inputText.value;
-            if (!noteTitle && !noteText) {
+            if (!noteTitle || !noteText) {
                 text = 'Заполните все поля';
                 type = 'message-warning';
             }
@@ -90,7 +90,7 @@ const view = {
             else {
                 noteText.trim();
                 noteTitle.trim();
-                type = 'message-add';
+                type = 'message';
                 text = 'Заметка добавлена';
                 controller.addNote(noteTitle, noteText, noteColor)
                 // view.showMessage(type, text);
@@ -118,7 +118,7 @@ const view = {
         notesList.addEventListener('click', (e) => {
             const noteId = +e.target.closest('li').id
             if (e.target.classList.contains('delete-button')) {
-                type = 'message-warning';
+                type = 'message';
                 text = "Заметка удалена";
                 this.showMessage(type, text);
                 controller.deleteNote(noteId)
@@ -161,13 +161,15 @@ const view = {
     },
     showMessage(type, text) {
         const messageBox = document.querySelector('.message-box')
-        messageBox.classList.add(`${type}`)
-        messageBox.innerHTML = `
-                <img src="${type === 'message-add' ? './assets/images/Done.svg' : './assets/images/warning.svg'}" alt="warning">
-                <span>${text}</span>` //
+        // messageBox.classList.add(`${type}`)
+        const message = document.createElement('div');
+        message.classList.add('message', type);
+        message.innerHTML = `
+            <img src="${type === 'message' ? './assets/images/Done.svg' : './assets/images/warning.svg'}" alt="warning">
+            <span>${text}</span>`
+        messageBox.prepend(message)
         setTimeout(() => {
-            messageBox.innerHTML = ''
-            messageBox.classList.remove('message-warning', 'message-add')
+            message.remove()
         }, 3000)
     }
 }

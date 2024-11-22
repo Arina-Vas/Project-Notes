@@ -1,10 +1,43 @@
-* {
+@font-face {
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/static/Montserrat-Regular.woff) format("woff"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Regular.eot) format("eot"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/static/Montserrat-Medium.woff) format("woff"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Medium.eot) format("eot"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url(./assets/fonts/Montserrat/static/Montserrat-Bold.woff)  format("woff"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Bold.eot)  format("eot"),
+    url(./assets/fonts/Montserrat/static/Montserrat-Bold.ttf)  format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body {
+    /* font-display:; */
     font-family: "Montserrat", sans-serif;
     min-width: 375px;
 }
@@ -34,7 +67,7 @@ header {
 }
 
 .logo img {
-    width: 24px;
+    /* width: 24px; */
     height: 24px;
 }
 
@@ -129,7 +162,6 @@ main {
 
 .input-title {
     max-width: 345px;
-    text-align: center;
     height: 36px;
     overflow: hidden;
 }
@@ -141,18 +173,57 @@ main {
 
 .colors-list {
     display: flex;
+    align-items: center;
     gap: 8px;
     list-style: none;
     margin-bottom: 12px;
 }
 
 .colors-list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 36px;
     height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
+    border-radius: 100%;
+
+    cursor: pointer;
+    /* outline: 1px solid red; */
+}
+
+.circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    /* outline: 1px dashed blue; */
+}
+
+.circle:hover {
+    transform: scale(1.2);
+}
+
+.select-color {
+    border: 1.0px solid #457cdc;
+}
+
+.yellow {
+    background-color: #f3db7d;
+}
+
+.green {
+    background-color: #c2f37d
+}
+
+.blue {
+    background-color: #7de1f3
+}
+
+.red {
+    background-color: #f37d7d
+}
+
+.pink {
+    background-color: #e77df3
 }
 
 .add-button {
@@ -178,40 +249,7 @@ main {
 
 /* CIRCLES-COLORS*/
 
-.circle {
-    width: 24px;
-    height: 24px;
-    border-radius: 100%;
-    cursor: pointer;
-}
 
-.circle:hover {
-    transform: scale(1.2);
-}
-
-.select-color {
-    border: 1.50px solid #457cdc;
-}
-
-.yellow {
-    background-color: #f3db7d;
-}
-
-.green {
-    background-color: #c2f37d
-}
-
-.blue {
-    background-color: #7de1f3
-}
-
-.red {
-    background-color: #f37d7d
-}
-
-.pink {
-    background-color: #e77df3
-}
 
 
 /* section NOTES */
@@ -231,12 +269,12 @@ main {
     align-items: center;
     /* margin-bottom: 12px; */
     font-size: 12px;
-    }
+}
 
-    .checkbox-input,
-    .checkbox-label{
-        cursor: pointer;
-    }
+.checkbox-input,
+.checkbox-label {
+    cursor: pointer;
+}
 
 .checkbox-input {
     appearance: none;
@@ -314,10 +352,8 @@ main {
 .buttons {
     display: flex;
     gap: 12px;
-    
+
 }
-
-
 
 .favorite-check {
     appearance: none;
@@ -380,15 +416,19 @@ main {
 
 .message-box {
     display: flex;
+    max-height: 80%;
+    flex-direction: column;
     gap: 10px;
     align-self: flex-end;
     position: sticky;
     bottom: 72px;
-
-    opacity: 0;
-    transform: translateX(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
     z-index: 1;
+}
+
+.message {
+    display: flex;
+    gap: 10px;
+    background-color: #47b27d;
 
     border-radius: 10px;
     padding: 12px 24px;
@@ -399,16 +439,7 @@ main {
     color: rgb(255, 255, 255);
 }
 
-.message-add,
-.message-warning {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
 
-.message-add {
-    background-color: #47b27d;
-}
 
 .message-warning {
     background-color: #f23d5b;
@@ -451,7 +482,7 @@ main {
         padding: 4px;
     }
 
-    .list{
+    .list {
         width: 100%;
     }
 
@@ -468,7 +499,7 @@ main {
 @media screen and (max-width: 768px) {
 
     .colors-list {
-        gap: 0px;
+        gap: 4px;
     }
 
     .note {
