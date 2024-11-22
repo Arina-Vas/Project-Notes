@@ -165,7 +165,7 @@ const view = {
         const message = document.createElement('div');
         message.classList.add('message', type);
         message.innerHTML = `
-            <img src="${type === 'message' ? '../assets/images/Done.svg' : '../assets/images/warning.svg'}" alt="warning">
+            <img src="${type === 'message' ? 'assets/images/Done.svg' : 'assets/images/warning.svg'}" alt="warning">
             <span>${text}</span>`
         messageBox.prepend(message)
         setTimeout(() => {
