@@ -1,8 +1,8 @@
 @font-face {
     font-family: "Montserrat";
     src: url(./assets/fonts/Montserrat/static/Montserrat-Regular.woff) format("woff"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Regular.eot) format("eot"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Regular.ttf) format("truetype");
+        url(./assets/fonts/Montserrat/static/Montserrat-Regular.eot) format("eot"),
+        url(./assets/fonts/Montserrat/static/Montserrat-Regular.ttf) format("truetype");
     font-weight: 400;
     font-style: normal;
 }
@@ -10,17 +10,17 @@
 @font-face {
     font-family: "Montserrat";
     src: url(./assets/fonts/Montserrat/static/Montserrat-Medium.woff) format("woff"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Medium.eot) format("eot"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Medium.ttf) format("truetype");
+        url(./assets/fonts/Montserrat/static/Montserrat-Medium.eot) format("eot"),
+        url(./assets/fonts/Montserrat/static/Montserrat-Medium.ttf) format("truetype");
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url(./assets/fonts/Montserrat/static/Montserrat-Bold.woff)  format("woff"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Bold.eot)  format("eot"),
-    url(./assets/fonts/Montserrat/static/Montserrat-Bold.ttf)  format("truetype");
+    src: url(./assets/fonts/Montserrat/static/Montserrat-Bold.woff) format("woff"),
+        url(./assets/fonts/Montserrat/static/Montserrat-Bold.eot) format("eot"),
+        url(./assets/fonts/Montserrat/static/Montserrat-Bold.ttf) format("truetype");
     font-weight: 700;
     font-style: normal;
 }
@@ -33,7 +33,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 body {
@@ -414,7 +414,7 @@ main {
 
 .message-box {
     display: flex;
-    max-height: 80%;
+    /* max-height: 200px; */
     flex-direction: column;
     gap: 10px;
     align-self: flex-end;
@@ -427,6 +427,7 @@ main {
     display: flex;
     gap: 10px;
     background-color: #47b27d;
+    /* margin-bottom: 3px; */
 
     border-radius: 10px;
     padding: 12px 24px;
@@ -435,8 +436,24 @@ main {
     font-weight: 500;
     line-height: 24px;
     color: rgb(255, 255, 255);
+
+
+    animation: appearance 1s ease-in-out;
+    /* animation-duration: 1s ease-in-out;
+    animation-name: appearance; */
 }
 
+@keyframes appearance {
+    from {
+        opacity: 0%;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 100%;
+        transform: translateX(0)
+    }
+}
 
 
 .message-warning {

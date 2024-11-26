@@ -106,9 +106,13 @@ const view = {
             const noteId = +e.target.closest('li').id
             if (e.target.classList.contains('delete-button')) {
                 controller.deleteNote(noteId)
+                favoriteListToggle.checked = false;
             }
             else if (e.target.classList.contains('favorite-check')) {
                 controller.toggleFavorite(noteId);
+                if(favoriteListToggle.checked){
+                    controller.toggleShowFavorite(favoriteListToggle.checked)
+                }
             }
         })
     },
@@ -148,6 +152,10 @@ const view = {
             <img src= '${messageType.image}'>
             <span>${messageType.text}</span>`
         messageBox.prepend(message)
+        const countMessages = document.querySelectorAll('.message')
+        if(countMessages.length > 8){
+            messageBox.innerHTML = ''
+        }
         setTimeout(() => {
             message.remove()
         }, 3000)
